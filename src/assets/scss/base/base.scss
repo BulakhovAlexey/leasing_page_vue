@@ -1,0 +1,118 @@
+// BASE
+$fontFamily: Arial;
+$fontSize: rem(14); // тоже 14(px) - Размер шрифта по умолчанию из макета
+$fontWeight: 400;
+
+$br: 20px;
+
+// Цвета
+$mainColor: #090909; // Цвет шрифта по умолчанию
+$grayColor: #333f480d;
+
+//========================================================================================================================================================
+
+//responsive
+// Минимальная ширина страницы
+$minWidth: 320;
+// Ширина холста (макет)
+$maxWidth: 1920;
+// Ширина контейнера ограничения (0 = Нет ограничений)
+$maxWidthContainer: 1600;
+// Общее отступление из контейнера
+// (30 = по 15px Лево и право, 0 = Нет отступления)
+$containerPadding: 30;
+// ширина первого Breikpoint
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+// Адаптируемый тип:
+// 1 = отзывчивость (контейнер не имеет точек останова),
+// 2 = по точке разрыва (контейнер меняет ширину на точку разрыва)
+$responsiveType: 1;
+
+//========================================================================================================================================================
+
+//media
+$pc: em(
+	$containerWidth
+); // ПК, ноутбуки, некоторые таблетки в горизонтальном положении
+$tablet: em(991.98); // Таблетки, некоторые телефоны в горизонтальном положении
+$mobile: em(767.98); // Телефоны L
+$mobileSmall: em(479.98); // Телефоны S
+
+//========================================================================================================================================================
+//WRAPPER
+// if in #app
+#app {
+	height: 100%;
+}
+
+//
+.wrapper {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	@supports (overflow: clip) {
+		overflow: clip;
+	}
+	// Мы нажимаем нижний колонтитул
+	> main {
+		flex: 1 1 auto;
+	}
+	// Исправлена ​​ползунки
+	> * {
+		min-width: 0;
+	}
+}
+
+//cnt
+@if ($responsiveType==1) {
+	// Чуйна
+	[class*='__container'] {
+		@if ($maxWidthContainer>0) {
+			max-width: rem($containerWidth);
+			margin: 0 auto;
+		}
+		@if ($containerPadding>0) {
+			@if ($maxWidthContainer>0) {
+				padding: 0 rem(math.div($containerPadding, 2));
+			} @else {
+				@include adaptiveValue(
+					'padding-left',
+					math.div($containerPadding, 2),
+					15
+				);
+				@include adaptiveValue(
+					'padding-right',
+					math.div($containerPadding, 2),
+					15
+				);
+			}
+		}
+	}
+} @else {
+	// Контрольные точки
+	[class*='__container'] {
+		margin: 0 auto;
+		@if ($maxWidthContainer>0) {
+			max-width: rem($containerWidth);
+		} @else {
+			@if ($containerPadding>0) {
+				padding: 0 rem(math.div($containerPadding, 2));
+			}
+		}
+		@media (max-width: $pc) {
+			max-width: rem(970);
+		}
+		@media (max-width: $tablet) {
+			max-width: rem(750);
+		}
+		@media (max-width: $mobile) {
+			max-width: none;
+			@if ($containerPadding>0 and $maxWidthContainer>0) {
+				padding: 0 rem(math.div($containerPadding, 2));
+			}
+		}
+	}
+}
+//========================================================================================================================================================

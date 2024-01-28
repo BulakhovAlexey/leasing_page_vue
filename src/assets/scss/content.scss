@@ -1,0 +1,19 @@
+//common
+.title {
+	@include adaptiveValue('font-size', 35, 20);
+	margin-bottom: rem(20);
+	text-align: left;
+}
+//slider
+@import '@vueform/slider/themes/default.css';
+
+//blocks
+
+//banner
+@import '@/assets/scss/blocks/banner.scss';
+// advantages
+@import '@/assets/scss/blocks/advantages.scss';
+//Offers
+@import '@/assets/scss/blocks/offers.scss';
+//calculator
+@import '@/assets/scss/blocks/calculator.scss';
