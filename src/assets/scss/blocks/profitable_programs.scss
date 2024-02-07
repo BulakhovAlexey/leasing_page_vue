@@ -19,6 +19,12 @@
 		background-color: $greenColor;
 		text-transform: uppercase;
 		cursor: pointer;
+		transition: all 0.3s ease 0s;
+		&:hover {
+			background-color: rgba($color: $greenColor, $alpha: 0.9);
+			transform: scale(0.95);
+			color: white;
+		}
 	}
 }
 

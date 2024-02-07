@@ -19,5 +19,7 @@ export default {
 		from: 6,
 		to: 120,
 	},
+	sum: 'Сумма',
+	paymentPerMonth: 'Ежемесячный платеж',
 	rate: 20,
 }

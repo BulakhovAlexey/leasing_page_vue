@@ -1,5 +1,6 @@
 .banner {
 	@include sectionMargin;
+	position: relative;
 	&__container {
 		padding-bottom: rem(500);
 		position: relative;

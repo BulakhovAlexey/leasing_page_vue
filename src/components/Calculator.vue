@@ -1,5 +1,5 @@
 <template>
-	<section class="calculator">
+	<section id="calc" class="calculator">
 		<div class="calculator__container">
 			<div class="calculator__inner">
 				<h2 class="calculator__title title">{{ data.title }}</h2>
@@ -66,13 +66,13 @@
 					</div>
 					<div class="form-calculator__row">
 						<div class="form-calculator__field">
-							<p class="form-calculator__desc">Сумма</p>
+							<p class="form-calculator__desc">{{ sumText }}</p>
 							<p class="form-calculator__value">
 								{{ numFormatter(CountFinalSum) }}
 							</p>
 						</div>
 						<div class="form-calculator__field">
-							<p class="form-calculator__desc">платеж</p>
+							<p class="form-calculator__desc">{{ sumPerMonthText }}</p>
 							<p class="form-calculator__value">
 								{{ numFormatter(CountPaymentPerMonth) }}
 							</p>
@@ -111,6 +111,8 @@ export default {
 			firstAmountMin: 0,
 			firstAmountMax: 0,
 			percent: this.data.firstAmount.percent,
+			sumText: this.data.sum,
+			sumPerMonthText: this.data.paymentPerMonth,
 		}
 	},
 	mounted() {
@@ -140,12 +142,6 @@ export default {
 				currency: 'RUB',
 				minimumFractionDigits: 0,
 			}).format(num)
-		},
-		addSpaces(num) {
-			return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
-		},
-		removeSpaces(str) {
-			return str.split(' ').join('')
 		},
 		updatePercent(value) {
 			this.percent = Math.round((value / this.priceValue) * 100)

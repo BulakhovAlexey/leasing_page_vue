@@ -1,5 +1,5 @@
 <template>
-	<section class="advantages">
+	<section id="advantages" class="advantages">
 		<div class="advantages__container">
 			<div class="advantages__items">
 				<div

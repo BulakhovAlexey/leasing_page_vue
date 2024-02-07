@@ -22,12 +22,12 @@ import offersData from '@/seeders/offersData.js'
 import calculatorsData from '@/seeders/calculatorsData.js'
 export default {
 	components: {
-    Banner,
-    Advantages,
-    Offers,
-    Calculator,
-    ProfitablePrograms
-},
+		Banner,
+		Advantages,
+		Offers,
+		Calculator,
+		ProfitablePrograms,
+	},
 	data() {
 		return {
 			bannerData: bannerData,

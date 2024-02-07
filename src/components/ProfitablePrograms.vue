@@ -1,9 +1,10 @@
 <template>
-	<section class="programs">
+	<section id="programs" class="programs">
 		<div class="programs__container">
 			<div class="programs__inner">
 				<div class="programs__title title">{{ title }}</div>
 				<Preloader v-if="isLoading" />
+				<Filters />
 				<transition-group
 					name="programs-items"
 					class="programs__items"
@@ -29,17 +30,19 @@
 
 <script>
 import Preloader from '@/components/UI/Preloader.vue'
+import Filters from '@/components/UI/Filters.vue'
 import { getPrograms } from '@/api/programsApi.js'
 import data from '@/seeders/programs.js'
 
 export default {
-	components: { Preloader },
+	components: { Preloader, Filters },
 	data() {
 		return {
 			title: data.title,
 			items: [],
 			isLoading: false,
 			pageNum: 1,
+			maxPageNum: 10,
 			lastPage: false,
 		}
 	},
@@ -48,10 +51,11 @@ export default {
 	},
 	methods: {
 		showMore() {
-			//if (this.pageNum <= this.maxPageNum) {
 			this.pageNum++
 			this.get(this.pageNum)
-			//}
+			if (this.pageNum == this.maxPageNum) {
+				this.lastPage = true
+			}
 		},
 		async get(pageNum) {
 			this.isLoading = true
@@ -77,10 +81,11 @@ export default {
 }
 .programs-items-enter-active,
 .programs-items-leave-active {
-	transition: opacity 1s ease;
+	transition: transform 1s ease;
+	transform: translate(0, 0);
 }
 .programs-items-enter-from,
 .programs-items-leave-to {
-	opacity: 0;
+	transform: translate(0, 100%);
 }
 </style>

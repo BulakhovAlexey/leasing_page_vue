@@ -11,11 +11,16 @@
 				</div>
 			</div>
 		</div>
+		<Navigation />
 	</section>
 </template>
 
 <script>
+import Navigation from '@/components/UI/Navigation.vue'
 export default {
+	components: {
+		Navigation,
+	},
 	props: {
 		bannerData: {
 			type: Object,
