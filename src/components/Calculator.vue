@@ -1,6 +1,5 @@
 <template>
 	<section class="calculator">
-		{{ data }}
 		<div class="calculator__container">
 			<div class="calculator__inner">
 				<h2 class="calculator__title title">{{ data.title }}</h2>
@@ -21,6 +20,7 @@
 									:max="priceMax"
 									:lazy="false"
 									:tooltips="false"
+									:step="1000"
 								/>
 							</div>
 						</div>
@@ -40,13 +40,8 @@
 									:max="firstAmountMax"
 									:lazy="false"
 									:tooltips="false"
+									:step="1000"
 								/>
-								<br />
-								{{ firstAmountValue }}
-								<br />
-								{{ firstAmountMin }}
-								<br />
-								{{ firstAmountMax }}
 							</div>
 						</div>
 						<div class="form-calculator__field">
@@ -64,6 +59,7 @@
 									:max="periodMax"
 									:lazy="false"
 									:tooltips="false"
+									:step="1"
 								/>
 							</div>
 						</div>
@@ -71,11 +67,15 @@
 					<div class="form-calculator__row">
 						<div class="form-calculator__field">
 							<p class="form-calculator__desc">Сумма</p>
-							<p class="form-calculator__value">34343434</p>
+							<p class="form-calculator__value">
+								{{ numFormatter(CountFinalSum) }}
+							</p>
 						</div>
 						<div class="form-calculator__field">
 							<p class="form-calculator__desc">платеж</p>
-							<p class="form-calculator__value">343454545</p>
+							<p class="form-calculator__value">
+								{{ numFormatter(CountPaymentPerMonth) }}
+							</p>
 						</div>
 						<button type="submit" class="form-calculator__button">
 							Оставить заявку
@@ -108,10 +108,18 @@ export default {
 			periodMin: this.data.period.from,
 			periodMax: this.data.period.to,
 			firstAmountValue: this.data.firstAmount.default,
-			firstAmountMin: 330000,
-			firstAmountMax: 1980000,
+			firstAmountMin: 0,
+			firstAmountMax: 0,
 			percent: this.data.firstAmount.percent,
 		}
+	},
+	mounted() {
+		this.firstAmountMin = Math.round(
+			(this.data.price.default * this.data.firstAmount.from) / 100
+		)
+		this.firstAmountMax = Math.round(
+			(this.data.price.default * this.data.firstAmount.to) / 100
+		)
 	},
 	watch: {
 		firstAmountValue: {
@@ -126,18 +134,45 @@ export default {
 		},
 	},
 	methods: {
+		numFormatter(num) {
+			return new Intl.NumberFormat('ru', {
+				style: 'currency',
+				currency: 'RUB',
+				minimumFractionDigits: 0,
+			}).format(num)
+		},
+		addSpaces(num) {
+			return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+		},
+		removeSpaces(str) {
+			return str.split(' ').join('')
+		},
 		updatePercent(value) {
 			this.percent = Math.round((value / this.priceValue) * 100)
 		},
-		updateFirstAmount(value) {
-			console.log(value)
+		updateFirstAmount(newValue) {
+			this.firstAmountValue = Math.round(newValue * (this.percent / 100))
+			this.firstAmountMin = Math.round(newValue * 0.05)
+			this.firstAmountMax = Math.round(newValue * 0.6)
+		},
+		updateFirstAmountPercent(value) {
 			this.percent = Math.round((this.firstAmountValue / value) * 100)
-			console.log('percent' + this.percent)
-
 			this.firstAmountMin = Math.round(value / 10)
 			this.firstAmountMax = Math.round(value * 0.6)
-
-			//this.updatePercent(value)
+		},
+	},
+	computed: {
+		CountPaymentPerMonth() {
+			return Math.round(
+				(this.priceValue - this.firstAmountValue) *
+					((0.05 * Math.pow(1.05, this.periodValue)) /
+						(Math.pow(1.05, this.periodValue) - 1))
+			)
+		},
+		CountFinalSum() {
+			return Math.round(
+				this.firstAmountValue + this.periodValue * this.CountPaymentPerMonth
+			)
 		},
 	},
 }

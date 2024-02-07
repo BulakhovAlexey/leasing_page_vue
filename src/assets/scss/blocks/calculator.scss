@@ -1,10 +1,7 @@
 .calculator {
-	@include adaptiveValue('margin-bottom', 60, 20);
-
+	@include sectionMargin;
 	&__inner {
-		padding: rem(40);
-		background-color: $grayColor;
-		border-radius: $br;
+		@include sectionBgGray;
 	}
 }
 
@@ -53,18 +50,31 @@
 	}
 
 	&__desc {
-		margin-bottom: rem(12);
+		margin-bottom: rem(7);
 		opacity: 0.8;
-		font-size: rem(20);
+		font-size: rem(25);
+		@include adaptiveValue('font-size', 22, 20);
+		text-transform: capitalize;
 		text-align: left;
 	}
 
 	&__value {
+		@include adaptiveValue('font-size', 25, 17);
+		font-weight: bold;
 	}
 
 	&__button {
 		padding: rem(20) rem(15);
 		font-size: rem(19);
+		border-radius: $br;
+		background-color: $greenColor;
+		color: white;
+		transition: all 0.3s ease 0s;
+		&:hover {
+			background-color: #fff;
+			color: $greenColor;
+			transform: scale(1.1);
+		}
 	}
 }
 

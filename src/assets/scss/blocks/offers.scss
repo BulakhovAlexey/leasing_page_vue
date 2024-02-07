@@ -1,10 +1,8 @@
 .offers {
-	@include adaptiveValue('margin-bottom', 60, 20);
+	@include sectionMargin;
 
 	&__inner {
-		background-color: $grayColor;
-		padding: rem(40);
-		border-radius: $br;
+		@include sectionBgGray;
 	}
 
 	&__block {

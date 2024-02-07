@@ -1,12 +1,11 @@
 .advantages {
-	@include adaptiveValue('margin-bottom', 60, 20);
+	@include sectionMargin;
 
 	&__items {
 		display: flex;
 		justify-content: space-between;
 		align-items: stretch;
 		flex-wrap: wrap;
-		margin: rem(0) rem(-10);
 		padding: rem(40);
 		background-color: $grayColor;
 		border-radius: $br;

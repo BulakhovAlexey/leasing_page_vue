@@ -4,6 +4,16 @@
 	margin-bottom: rem(20);
 	text-align: left;
 }
+@mixin sectionMargin() {
+	@include adaptiveValue('margin-bottom', 60, 20);
+}
+
+@mixin sectionBgGray() {
+	padding: rem(40);
+	background-color: $grayColor;
+	border-radius: $br;
+}
+
 //slider
 @import '@vueform/slider/themes/default.css';
 
@@ -17,3 +27,5 @@
 @import '@/assets/scss/blocks/offers.scss';
 //calculator
 @import '@/assets/scss/blocks/calculator.scss';
+//profitable programs
+@import '@/assets/scss/blocks/profitable_programs.scss';

@@ -2,16 +2,16 @@ export default {
 	title: 'Рассчитайте стоимость автомобиля в лизинг',
 	price: {
 		text: 'Стоимость автомобиля',
-		default: 3300000,
+		default: 3000000,
 		from: 1500000,
 		to: 10000000,
 	},
 	firstAmount: {
 		text: 'Первоначальный взнос',
-		default: 420000,
-		from: 10,
+		default: 300000,
+		from: 5,
 		to: 60,
-		percent: 13,
+		percent: 10,
 	},
 	period: {
 		text: 'Срок лизинга',

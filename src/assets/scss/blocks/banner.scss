@@ -1,5 +1,5 @@
 .banner {
-	@include adaptiveValue('margin-bottom', 60, 20);
+	@include sectionMargin;
 	&__container {
 		padding-bottom: rem(500);
 		position: relative;
@@ -38,7 +38,7 @@
 	&__btn {
 		display: block;
 		flex: 0 1 50px;
-		background-color: #547a32;
+		background-color: $greenColor;
 		border-radius: 50px;
 		padding: rem(20);
 		@media (max-width: em(400)) {

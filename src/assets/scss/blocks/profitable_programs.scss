@@ -1,0 +1,42 @@
+//
+.programs {
+	@include sectionMargin;
+	text-align: center;
+
+	&__inner {
+		@include sectionBgGray;
+	}
+
+	&__items {
+		@include gridCards('fill', 270px, 1fr, 20px);
+		margin-bottom: rem(30);
+	}
+	&__show-more {
+		margin: 0 auto;
+		display: inline-block;
+		padding: rem(15);
+		border-radius: $br;
+		background-color: $greenColor;
+		text-transform: uppercase;
+		cursor: pointer;
+	}
+}
+
+.item-program {
+	justify-self: center;
+	padding: rem(20) rem(10) rem(10) rem(10);
+	display: flex;
+	border-radius: $br;
+	flex-direction: column;
+	background-color: #618d4d;
+	text-align: left;
+	&__title {
+		@include adaptiveValue('font-size', 18, 16);
+		text-transform: capitalize;
+		flex: 1 1 100%;
+	}
+
+	&__body {
+		@include adaptiveValue('font-size', 14, 12);
+	}
+}
