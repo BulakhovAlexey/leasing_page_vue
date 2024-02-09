@@ -4,22 +4,33 @@
 			<div class="programs__inner">
 				<div class="programs__title title">{{ title }}</div>
 				<Preloader v-if="isLoading" />
-				<Filters />
-				<transition-group
+				<Filters
+					:options="options"
+					@sortHandler="sortPrograms"
+					@changeQuery="sortProgramsByQuery"
+				/>
+				<TransitionGroup
+					tag="div"
 					name="programs-items"
 					class="programs__items"
-					tag="div"
 				>
 					<div
 						class="programs__item item-program"
-						v-for="item in items"
-						:key="item.id"
+						v-for="item in filteredPrograms"
+						:key="item.title + item.id"
 					>
 						<div class="item-program__title">{{ item.title }}</div>
 						<br />
 						<div class="item-program__body">{{ item.body }}</div>
+						<div class="item-program__hidden">
+							<a href="#" class="item-program__link">read more!</a>
+						</div>
 					</div>
-				</transition-group>
+				</TransitionGroup>
+				<div class="programs__empty" v-if="filteredPrograms.length <= 0">
+					<p class="programs__empty-text">Sorry, can't find anything...</p>
+				</div>
+
 				<div class="programs__show-more" v-if="!lastPage" @click="showMore">
 					SHOW MORE
 				</div>
@@ -44,12 +55,31 @@ export default {
 			pageNum: 1,
 			maxPageNum: 10,
 			lastPage: false,
+			sortBy: '',
+			query: '',
+			arr: [],
+			options: [
+				{
+					code: 'title',
+					value: 'By Title',
+				},
+				{
+					code: 'body',
+					value: 'By Description',
+				},
+			],
 		}
 	},
 	async mounted() {
 		await this.get(this.pageNum)
 	},
 	methods: {
+		sortPrograms(newVal) {
+			this.sortBy = newVal
+		},
+		sortProgramsByQuery(newVal) {
+			this.query = newVal
+		},
 		showMore() {
 			this.pageNum++
 			this.get(this.pageNum)
@@ -70,6 +100,20 @@ export default {
 				console.log(error)
 			}
 			this.isLoading = false
+		},
+	},
+	watch: {
+		sortBy() {
+			if (this.sortBy != '') {
+				this.items.sort((a, b) => (a[this.sortBy] > b[this.sortBy] ? 1 : -1))
+			}
+		},
+	},
+	computed: {
+		filteredPrograms() {
+			return this.items.filter(element =>
+				element.title.toLowerCase().includes(this.query.toLowerCase())
+			)
 		},
 	},
 }

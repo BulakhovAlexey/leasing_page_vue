@@ -1,0 +1,15 @@
+.filters {
+	margin-bottom: rem(30);
+	&__inner {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__select,
+	&__input {
+		padding: rem(10) rem(15);
+		cursor: pointer;
+		@include shadow();
+	}
+}

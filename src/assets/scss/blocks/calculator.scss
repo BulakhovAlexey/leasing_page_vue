@@ -39,6 +39,7 @@
 	&__input {
 		position: relative;
 		input {
+			@include shadow();
 			font-weight: 900;
 			font-size: 18px;
 			outline: 0;
@@ -70,6 +71,7 @@
 		background-color: $greenColor;
 		color: white;
 		transition: all 0.3s ease 0s;
+		@include shadow();
 		&:hover {
 			background-color: #fff;
 			color: $greenColor;

@@ -14,9 +14,13 @@
 	border-radius: $br;
 }
 
+@mixin shadow() {
+	box-shadow: 7px 7px 15px -5px rgba(0, 0, 0, 0.71);
+	border-radius: $br;
+}
+
 //slider
 @import '@vueform/slider/themes/default.css';
-
 //blocks
 
 //banner
@@ -31,3 +35,5 @@
 @import '@/assets/scss/blocks/calculator.scss';
 //profitable programs
 @import '@/assets/scss/blocks/profitable_programs.scss';
+//filters
+@import '@/assets/scss/blocks/filters.scss';

@@ -6,6 +6,7 @@ import VueSmoothScroll from 'vue3-smooth-scroll'
 import '@/assets/scss/main.scss'
 
 const app = createApp(App)
+
 app
 	.use(router)
 	.use(VueSmoothScroll, {
