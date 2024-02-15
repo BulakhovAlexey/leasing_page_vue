@@ -19,11 +19,18 @@
 						v-for="item in filteredPrograms"
 						:key="item.title + item.id"
 					>
-						<div class="item-program__title">{{ item.title }}</div>
-						<br />
-						<div class="item-program__body">{{ item.body }}</div>
-						<div class="item-program__hidden">
-							<a href="#" class="item-program__link">read more!</a>
+						<div class="item-program__wrapper">
+							<div class="item-program__title">{{ item.title }}</div>
+							<br />
+							<div class="item-program__body">{{ item.body }}</div>
+							<router-link
+								class="item-program__hidden"
+								:to="{
+									name: 'program_detail',
+									params: { name: item.id },
+								}"
+								>read more!</router-link
+							>
 						</div>
 					</div>
 				</TransitionGroup>
@@ -57,7 +64,6 @@ export default {
 			lastPage: false,
 			sortBy: '',
 			query: '',
-			arr: [],
 			options: [
 				{
 					code: 'title',
@@ -71,7 +77,7 @@ export default {
 		}
 	},
 	async mounted() {
-		await this.get(this.pageNum)
+		await this.getData(this.pageNum)
 	},
 	methods: {
 		sortPrograms(newVal) {
@@ -82,12 +88,12 @@ export default {
 		},
 		showMore() {
 			this.pageNum++
-			this.get(this.pageNum)
+			this.getData(this.pageNum)
 			if (this.pageNum == this.maxPageNum) {
 				this.lastPage = true
 			}
 		},
-		async get(pageNum) {
+		async getData(pageNum) {
 			this.isLoading = true
 			try {
 				const result = await getPrograms(pageNum)

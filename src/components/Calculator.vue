@@ -49,7 +49,6 @@
 							<div class="form-calculator__input">
 								<input
 									class="input__period"
-									type="number"
 									name="period"
 									v-model="periodValue"
 								/>
@@ -93,12 +92,14 @@ export default {
 	components: {
 		Slider,
 	},
+
 	props: {
 		data: {
 			type: Object,
 			required: true,
 		},
 	},
+
 	data() {
 		return {
 			priceValue: this.data.price.default,
@@ -115,6 +116,7 @@ export default {
 			sumPerMonthText: this.data.paymentPerMonth,
 		}
 	},
+
 	mounted() {
 		this.firstAmountMin = Math.round(
 			(this.data.price.default * this.data.firstAmount.from) / 100
@@ -123,6 +125,7 @@ export default {
 			(this.data.price.default * this.data.firstAmount.to) / 100
 		)
 	},
+
 	watch: {
 		firstAmountValue: {
 			handler(newValue) {
@@ -135,6 +138,7 @@ export default {
 			},
 		},
 	},
+
 	methods: {
 		numFormatter(num) {
 			return new Intl.NumberFormat('ru', {
@@ -157,6 +161,7 @@ export default {
 			this.firstAmountMax = Math.round(value * 0.6)
 		},
 	},
+
 	computed: {
 		CountPaymentPerMonth() {
 			return Math.round(

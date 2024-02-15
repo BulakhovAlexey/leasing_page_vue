@@ -44,7 +44,7 @@
 			font-size: 18px;
 			outline: 0;
 			padding: rem(15) rem(50) rem(15) rem(15);
-			border-radius: $br;
+			border-radius: $br $br 0 0;
 			opacity: 0.8;
 			position: relative;
 		}
