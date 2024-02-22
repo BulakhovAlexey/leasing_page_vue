@@ -22,7 +22,7 @@
 						<div class="item-program__wrapper">
 							<div class="item-program__title">{{ item.title }}</div>
 							<br />
-							<div class="item-program__body">{{ item.body }}</div>
+							<!-- <div class="item-program__body">{{ item.body }}</div> -->
 							<router-link
 								class="item-program__hidden"
 								:to="{

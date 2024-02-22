@@ -1,11 +1,17 @@
 <template>
 	<Preloader v-if="isLoading" />
-	<div>program - {{ $route.params.name }}</div>
-	<div>{{ item.userId }}</div>
-	<div>{{ item.id }}</div>
-	<div>{{ item.title }}</div>
-	<div>{{ item.body }}</div>
-	<RouterLink to="/"> BACK </RouterLink>
+	<section class="one_program">
+		<div class="one_program__container">
+			<div class="one_program__inner">
+				<div class="one_program__title title">Program - {{ item.title }}</div>
+				<div class="one_program__code">Код программы: {{ item.id }}</div>
+				<div class="one_program__body">{{ item.body }}</div>
+			</div>
+			<div class="one_program__back">
+				<RouterLink class="one_program__back-link" to="/#programs">Go back</RouterLink>
+			</div>
+		</div>
+	</section>
 </template>
 
 <script>

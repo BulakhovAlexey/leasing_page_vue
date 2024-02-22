@@ -1,0 +1,35 @@
+.one_program {
+    @include sectionMargin;
+
+		&__inner {
+      @include sectionBgGray;
+		}
+
+		&__code {
+      font-size: 12px;
+      opacity: 0.7;
+      margin-bottom: rem(20);
+		}
+
+		&__body {
+      padding: rem(10) rem(0);
+		}
+
+		&__back {
+      text-align: right;
+      margin-top: rem(50);
+		}
+    
+		&__back-link {
+      padding: rem(10);
+      border-radius: $br;
+      background-color: $greenColor;
+      text-transform: uppercase;
+      color: white;
+      transition: all 0.3s ease 0s;
+      &:hover{
+        background-color: rgba($color: $greenColor, $alpha: 0.6);
+        transition: all 0.3s ease 0s;
+      }
+		}
+}
