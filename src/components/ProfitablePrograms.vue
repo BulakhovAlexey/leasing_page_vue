@@ -22,7 +22,7 @@
 						<div class="item-program__wrapper">
 							<div class="item-program__title">{{ item.title }}</div>
 							<br />
-							<!-- <div class="item-program__body">{{ item.body }}</div> -->
+							<div class="item-program__body">{{ item.body }}</div>
 							<router-link
 								class="item-program__hidden"
 								:to="{
@@ -35,7 +35,8 @@
 					</div>
 				</TransitionGroup>
 				<div class="programs__empty" v-if="filteredPrograms.length <= 0">
-					<p class="programs__empty-text">Sorry, can't find anything...</p>
+					<p v-if="errorMessage.length > 0 " class="programs__empty-text">{{ errorMessage }}</p>
+					<p v-else class="programs__empty-text">Sorry, can't find anything...</p>
 				</div>
 
 				<div class="programs__show-more" v-if="!lastPage" @click="showMore">
@@ -56,6 +57,7 @@ export default {
 	components: { Preloader, Filters },
 	data() {
 		return {
+			errorMessage: '',
 			title: data.title,
 			items: [],
 			isLoading: false,
@@ -104,6 +106,7 @@ export default {
 				}
 			} catch (error) {
 				console.log(error)
+				this.errorMessage = error.message
 			}
 			this.isLoading = false
 		},

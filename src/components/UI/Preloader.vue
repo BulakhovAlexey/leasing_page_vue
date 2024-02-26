@@ -18,6 +18,7 @@ export default {}
 	width: 100%;
 	height: 100%;
 	background-color: rgba($color: #000000, $alpha: 0.6);
+	z-index: 100;
 	&__inner {
 		width: 100%;
 		height: 100%;

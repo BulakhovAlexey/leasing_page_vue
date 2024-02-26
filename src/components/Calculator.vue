@@ -1,14 +1,24 @@
 <template>
 	<section id="calc" class="calculator">
+		<Preloader v-if="isLoading" />
+		<Popup 
+		:show="showPopup"
+		@needShow="closePopup">
+		<template v-slot:popupTitle>Отлично! Форма отправлена!</template>
+		<template v-slot:popupBody>{{ formData }}</template>
+		</Popup>
 		<div class="calculator__container">
 			<div class="calculator__inner">
 				<h2 class="calculator__title title">{{ data.title }}</h2>
-				<form class="calculator__form form-calculator">
+				<form 
+				@submit.prevent="sendForm"
+				class="calculator__form form-calculator">
 					<div class="form-calculator__row">
 						<div class="form-calculator__field">
 							<label for="price">{{ data.price.text }}</label>
 							<div class="form-calculator__input input">
 								<input
+									readonly
 									class="input__rub"
 									type="number"
 									name="price"
@@ -19,16 +29,21 @@
 									:min="priceMin"
 									:max="priceMax"
 									:lazy="false"
-									:tooltips="false"
-									:step="1000"
+									:tooltips="true"
+									:step="1"
+									:showTooltip="'focus'"
+									:tooltipPosition="'bottom'"
+									:format="format"
 								/>
+								<span class="input__text">руб</span>
 							</div>
 						</div>
 						<div class="form-calculator__field">
 							<label for="percent">{{ data.firstAmount.text }}</label>
-							<div class="form-calculator__input">
+							<div class="form-calculator__input input">
 								<span class="percent">{{ percent }}%</span>
 								<input
+									readonly
 									class="input__perс"
 									type="number"
 									name="percent"
@@ -39,15 +54,19 @@
 									:min="firstAmountMin"
 									:max="firstAmountMax"
 									:lazy="false"
-									:tooltips="false"
-									:step="1000"
+									:tooltips="true"
+									:step="1"
+									:showTooltip="'focus'"
+									:tooltipPosition="'bottom'"
+									:format="format"
 								/>
 							</div>
 						</div>
 						<div class="form-calculator__field">
 							<label for="period">{{ data.period.text }}</label>
-							<div class="form-calculator__input">
+							<div class="form-calculator__input input">
 								<input
+									readonly
 									class="input__period"
 									name="period"
 									v-model="periodValue"
@@ -57,9 +76,12 @@
 									:min="periodMin"
 									:max="periodMax"
 									:lazy="false"
-									:tooltips="false"
+									:tooltips="true"
 									:step="1"
+									:showTooltip="'focus'"
+									:tooltipPosition="'bottom'"
 								/>
+								<span class="input__text">мес</span>
 							</div>
 						</div>
 					</div>
@@ -88,21 +110,29 @@
 
 <script>
 import Slider from '@vueform/slider'
+import Preloader from './UI/Preloader.vue'
+import Popup from './UI/Popup.vue'
 export default {
 	components: {
-		Slider,
+    Slider,
+    Preloader,
+		Popup
 	},
-
 	props: {
 		data: {
 			type: Object,
 			required: true,
-		},
+		}
 	},
-
 	data() {
 		return {
+			formData: {},
+			isLoading: false,
+			showPopup: false,
 			priceValue: this.data.price.default,
+			format: {
+				thousand: '.',
+			},
 			priceMin: this.data.price.from,
 			priceMax: this.data.price.to,
 			periodValue: this.data.period.default,
@@ -116,7 +146,6 @@ export default {
 			sumPerMonthText: this.data.paymentPerMonth,
 		}
 	},
-
 	mounted() {
 		this.firstAmountMin = Math.round(
 			(this.data.price.default * this.data.firstAmount.from) / 100
@@ -138,7 +167,6 @@ export default {
 			},
 		},
 	},
-
 	methods: {
 		numFormatter(num) {
 			return new Intl.NumberFormat('ru', {
@@ -160,6 +188,24 @@ export default {
 			this.firstAmountMin = Math.round(value / 10)
 			this.firstAmountMax = Math.round(value * 0.6)
 		},
+		sendForm(){
+			this.isLoading = true
+			setTimeout(() => {
+				const data = {
+				"Price avto": this.priceValue,
+				"First amount": this.firstAmountValue,
+				"Leasing term": this.periodValue,
+				"Sum": this.CountFinalSum,
+				"Payment per month": this.CountPaymentPerMonth,
+			}
+			this.formData = data
+			this.isLoading = false
+			this.showPopup = true
+			}, 200);
+		},
+		closePopup(val){
+			this.showPopup = val
+		}
 	},
 
 	computed: {
