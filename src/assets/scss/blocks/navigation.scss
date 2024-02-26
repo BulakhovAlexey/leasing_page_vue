@@ -10,6 +10,10 @@
 	justify-content: center;
 	align-items: flex-end;
 	padding-bottom: rem(20);
+	@media (max-width:$tablet){
+		bottom: 10px;
+		padding-bottom: rem(10);
+	}
 
 	&__list {
 		display: flex;
@@ -17,10 +21,19 @@
 		align-items: center;
 		flex-wrap: wrap;
 		gap: rem(15);
+		@media (max-width:$mobile){
+			gap: rem(5);
+			justify-content: center;
+		}
 	}
 
 	&__item {
 		padding: rem(10);
+		@media (max-width:$mobile){
+			flex: 1 1 100%;
+			text-align: center;
+			padding: rem(5);
+		}
 	}
 
 	&__link {

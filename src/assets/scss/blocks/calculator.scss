@@ -18,6 +18,9 @@
 		&:not(:last-child) {
 			margin-bottom: rem(40);
 		}
+		@media (max-width: em(950)){
+			flex-wrap: wrap;
+		}
 	}
 
 	&__field {
@@ -34,10 +37,19 @@
 			font-size: rem(20);
 			text-align: left;
 		}
+		@media (max-width: em(950)){
+			flex: 1 1 100%;
+			&:not(:last-child) {
+				margin-bottom: rem(20);
+			}
+		}
 	}
 
 	&__input {
 		position: relative;
+		@media (max-width: em(950)){
+			width: 100%;
+		}
 		input {
 			@include shadow();
 			font-weight: 900;
@@ -47,6 +59,10 @@
 			border-radius: $br $br 0 0;
 			opacity: 0.8;
 			position: relative;
+			display: block;
+			@media (max-width: em(950)){
+				width: 100%;
+			}
 		}
 	}
 
@@ -77,18 +93,28 @@
 			color: $greenColor;
 			transform: scale(1.1);
 		}
+		@media (max-width: em(950)){
+			padding: rem(15) rem(10);
+			font-size: rem(15);
+		}
 	}
 }
 
 .input {
 	position: relative;
-	&__perc {
-	}
-
-	&__period {
-	}
-
-	&__rub {
+	display: block;
+	&__text{
+		position: absolute;
+		top: 10%;
+		right: 5px;
+		z-index: 10;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #e0e0e0;
+		border-radius: 14px;
+		width: rem(42);
+		height: rem(42);
 	}
 }
 

@@ -9,11 +9,20 @@
 		padding: rem(40);
 		background-color: $grayColor;
 		border-radius: $br;
+		@media (max-width:$mobileSmall){
+			justify-content: flex-start;
+		}
 	}
 
 	&__item {
 		padding: rem(0) rem(10);
 		flex: 1 1 25%;
+		@media (max-width:$mobile){
+			flex: 1 1 50%;
+		}
+		@media (max-width:$mobileSmall){
+			flex: 1 1 100%;
+		}
 	}
 
 	&__stars {
@@ -47,6 +56,10 @@
 		text-align: center;
 		@media (max-width: $mobile) {
 			padding: rem(10);
+		}
+		@media (max-width:$mobileSmall){
+			align-items: flex-start;
+			text-align: left;
 		}
 	}
 

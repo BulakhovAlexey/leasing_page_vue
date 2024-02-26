@@ -18,12 +18,12 @@
 
 	&__list {
 		margin-top: rem(20);
-		column-gap: rem(32);
-		column-width: rem(140);
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: rem(20);
 	}
 }
-.title {
-}
+
 .images {
 	&__item {
 		max-width: 100%;

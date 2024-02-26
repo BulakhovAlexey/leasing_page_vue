@@ -4,12 +4,21 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		@media (max-width:$mobile){
+			flex-wrap: wrap;
+			gap: rem(10);
+		}
 	}
 
 	&__select,
 	&__input {
 		padding: rem(10) rem(15);
+		max-width: rem(150);
+		width: 100%;
 		cursor: pointer;
 		@include shadow();
+		@media (max-width:$mobileSmall){
+			max-width: 100%;
+		}
 	}
 }
