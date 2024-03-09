@@ -1,5 +1,5 @@
 # leasing_page(MVP)
-see result : 
+see result
 ###Stack
 - Vue.js
 - Vue Router
