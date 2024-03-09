@@ -3,6 +3,9 @@
 	@include adaptiveValue('font-size', 35, 20);
 	margin-bottom: rem(20);
 	text-align: left;
+	&.center{
+		text-align: center;
+	}
 }
 @mixin sectionMargin() {
 	@include adaptiveValue('margin-bottom', 60, 20);
@@ -22,7 +25,8 @@
 //slider
 @import '@vueform/slider/themes/default.css';
 //blocks
-
+//popup
+@import '@/assets/scss/blocks/popup.scss';
 //banner
 @import '@/assets/scss/blocks/banner.scss';
 //navigation
@@ -39,3 +43,5 @@
 @import '@/assets/scss/blocks/one_profitable_program.scss';
 //filters
 @import '@/assets/scss/blocks/filters.scss';
+//about
+@import '@/assets/scss/blocks/about.scss';

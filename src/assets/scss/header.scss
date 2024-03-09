@@ -12,12 +12,45 @@
 
 	&__top {
 		padding: rem(10) rem(20);
+		display: flex;
+		align-items: center;
+		@media (max-width:$mobile){
+			justify-content: space-between;
+		}
+	}
+
+	&__btns{
+		display: flex;
+		align-items: center;
+		flex: 1;
+		@media (max-width:$mobile){
+			flex-direction: column;
+			align-items: center;
+			position: absolute;
+			top: 60px;
+			right: 0;
+			width: 30%;
+			padding: rem(30);
+			background-color: #ffffff;
+			border-radius: 0 0 20px 20px;
+			box-shadow: -11px 11px 34px -6px rgba(0,0,0,0.83);
+			transform: translate(1000%,0px);
+			transition: all 0.3s ease 0s;
+		}
+		&.open{
+			transform: translate(0px,0px);
+			transition: all 0.3s ease 0s;
+		}
+		@media (max-width:$mobileSmall){
+			padding: rem(10);
+		}
 	}
 
 	&__menu {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex: 1 1 100%;
 	}
 
 	&__logo {
@@ -34,9 +67,10 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-	}
-
-	&__item {
+		@media (max-width:$mobile){
+			flex-direction: column;
+			gap: rem(15);
+		}
 	}
 
 	&__link {
@@ -54,5 +88,100 @@
 		&.router-link-active {
 			opacity: 1;
 		}
+		@media (max-width:$mobile){
+			padding: rem(5) rem(10);
+		}
 	}
+
+	&__burger{
+		display: none;
+		padding: rem(10);
+		cursor: pointer;
+		span{
+			display: block;
+			position: relative;
+			width: 20px;
+			height: 2px;
+			background-color: #000000;
+			&::after,
+			&::before{
+				content: '';
+				position: absolute;
+				left: 0;
+				width: 20px;
+				height: 2px;
+				background-color: #000000;
+			}
+			&::after{
+				top: -7px;
+			}
+			&::before{
+				bottom: -7px;
+			}
+		}
+		&.open{
+			span{
+				background-color: transparent;
+				&::after{
+					width: 24px;
+					top: 0;
+					transform: rotate(45deg);
+				}
+				&::before{
+					width: 24px;
+					bottom: 0;
+					transform: rotate(-45deg);
+				}
+			}
+		}
+		@media (max-width:$mobile){
+			display: block;
+		}
+	}
+
+	&__auth {
+	}
+
+	&__auth-block {
+		display: flex;
+		align-items: stretch;
+		gap: rem(5);
+		@media (max-width:$mobile){
+			flex-direction: column;
+			gap: rem(15);
+			margin-top: 15px;
+		}
+	}
+
+	&__notAuth {
+		padding: rem(5);
+		text-wrap: nowrap;
+		text-transform: uppercase;
+		border: 1px solid black;
+		cursor: pointer;
+		padding: rem(10);
+		border: 1px solid black;
+		border-radius: $br;
+		@media (max-width:$mobile){
+			margin-top: 15px;
+		}
+	}
+}
+
+.auth-block {
+		&__user,
+		&__exit {
+			padding: rem(10);
+			border: 1px solid black;
+			border-radius: $br;
+			cursor: pointer;
+			text-align: center;
+		}
+		&__exit {
+			text-transform: uppercase;
+		}
+
+		&__exit {
+
+		}
 }

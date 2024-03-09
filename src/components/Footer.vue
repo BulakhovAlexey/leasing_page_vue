@@ -5,7 +5,7 @@
 				<div class="footer__logo">
 					<img class="footer__img" src="../assets/img/logo.png" alt="Logo" />
 				</div>
-				<ul class="header__list">
+				<ul class="footer__list">
 					<li class="header__item">
 						<RouterLink to="/" class="header__link">Main</RouterLink>
 					</li>
@@ -15,7 +15,6 @@
 				</ul>
 			</div>
 		</div>
-		<p class="footer__text">All rights reserved</p>
 	</footer>
 </template>
 

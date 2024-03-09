@@ -1,12 +1,15 @@
 .footer {
 	box-shadow: 0px -2px 11px 3px rgba(0, 0, 0, 0.47);
-	padding-bottom: rem(10);
 	text-align: center;
 	&__inner {
 		padding: rem(20) rem(10);
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+
+	&__list{
+		display: flex;
 	}
 
 	&__logo {

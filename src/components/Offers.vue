@@ -62,8 +62,7 @@
 						/>
 					</div>
 					<ul class="offers__list list">
-						<li
-							class="list__item item"
+						<li class="list__item item"
 							v-for="(item, index) in data.cars"
 							:key="index"
 						>

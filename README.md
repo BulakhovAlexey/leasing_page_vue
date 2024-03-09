@@ -1,6 +1,17 @@
-# leasing_page
+# leasing_page(MVP)
+see result : 
+###Stack
+- Vue.js
+- Vue Router
+- Vuex
+- SCSS
 
-## Project setup
+###PLugins
+- Axios
+- vueform/slider
+- vue3-smooth-scroll
+
+### Project setup
 ```
 npm install
 ```
@@ -14,11 +25,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
