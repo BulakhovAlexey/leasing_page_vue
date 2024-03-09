@@ -1,12 +1,13 @@
 # leasing_page(MVP)
-see result
-###Stack
+[--> Result <--](https://bulakhovalexey.github.io/leasing_page_vue/)
+
+### Stack
 - Vue.js
 - Vue Router
 - Vuex
 - SCSS
 
-###PLugins
+### PLugins
 - Axios
 - vueform/slider
 - vue3-smooth-scroll
